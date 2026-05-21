@@ -5,7 +5,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import create_db_tables
-from routers import carros, marcas, modelos
+from routers import auth, carros, marcas, modelos
 
 
 @asynccontextmanager
@@ -14,6 +14,10 @@ async def lifespan(app: FastAPI):
     yield
 
 openapi_tags = [
+    {
+        "name": "Auth",
+        "description": "Autenticação e Autorização",
+    },
     {
         "name": "Main",
         "description": "Operações para o recurso Carros",
@@ -58,9 +62,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(carros.router, tags=["Carros"])
-app.include_router(marcas.router, tags=["Marcas"])
-app.include_router(modelos.router, tags=["Modelos"])
+app.include_router(auth.router, tags=["Auth"])
+app.include_router(carros.router, tags=["Carros"])      # , dependencies=[Depends(login_required)]
+app.include_router(marcas.router, tags=["Marcas"])      # , dependencies=[Depends(login_required)]
+app.include_router(modelos.router, tags=["Modelos"])    # , dependencies=[Depends(login_required)]
 
 
 @app.get("/", tags=["Main"])

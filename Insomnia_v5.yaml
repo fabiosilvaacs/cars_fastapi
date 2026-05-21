@@ -311,7 +311,7 @@ collection:
         meta:
           id: req_1bbeb8aef4514185b15944bb13ed2d97
           created: 1779330984482
-          modified: 1779331007259
+          modified: 1779391989447
           isPrivate: false
           description: ""
           sortKey: -1778660060505.5
@@ -326,6 +326,12 @@ collection:
             value: insomnia/12.5.0
             description: ""
             disabled: false
+        authentication:
+          type: bearer
+          disabled: false
+          token: "{% response 'body', 'req_09f83aecd3eb41d1837f1250b96b5f95',
+            'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'always', 60 %}"
+          prefix: Bearer
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -443,6 +449,49 @@ collection:
             value: insomnia/12.5.0
             description: ""
             disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Auth
+    meta:
+      id: fld_5e23580f03e04729b0a6fcda4027e31e
+      created: 1779388985974
+      modified: 1779388985974
+      sortKey: -1779388985974
+      description: ""
+    children:
+      - url: http://127.0.0.1:8000/auth/login
+        name: Login
+        meta:
+          id: req_09f83aecd3eb41d1837f1250b96b5f95
+          created: 1779388990325
+          modified: 1779391099334
+          isPrivate: false
+          description: ""
+          sortKey: -1779388995929
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "user_id": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          disabled: true
+          token: ""
         settings:
           renderRequestBody: true
           encodeUrl: true
