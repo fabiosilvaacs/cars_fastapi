@@ -1,0 +1,9 @@
+# VS Code
+.vscode/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+carros.db
+poetry.lock
