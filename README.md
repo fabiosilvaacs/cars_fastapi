@@ -26,7 +26,7 @@ para evitar adicionar muitas dependências que não vão ser usadas nesse projet
 
 * Para facilitar os endpoints deixei o arquivo Insomnia_v5.yaml para ser importado e fazer os testes dos endpoints.
 
-* Autenticação e Autorização: login ok mas quando colocado o Bearer Token nas requisições retorna Invalid or expired token.
+* WIP: Autenticação e Autorização: login ok mas quando colocado o Bearer Token nas requisições retorna Invalid or expired token.
 
 ## Documentação
 Acesse a documentação interativa em: **http://localhost:8000/docs**
@@ -39,4 +39,9 @@ pip install -r requirements.txt
 ## Execução
 ```bash
 uvicorn main:app --reload
+```
+
+## Testes
+```bash
+python -m pytest tests/ -v
 ```

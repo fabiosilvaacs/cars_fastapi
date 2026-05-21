@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 from sqlmodel import Field, SQLModel
 
@@ -20,7 +20,7 @@ class Carro(CarroBase, table=True):
         default_factory=uuid.uuid4,
         primary_key=True,
     )
-    timestamp_cadastro: datetime = Field(default_factory=datetime.utcnow)
+    timestamp_cadastro: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class CarroCreate(CarroBase):

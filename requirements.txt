@@ -2,3 +2,6 @@ fastapi
 sqlmodel
 fastapi-cli
 PyJWT
+httpx
+pytest
+pytest-asyncio
