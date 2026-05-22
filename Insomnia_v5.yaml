@@ -1,10 +1,10 @@
 type: collection.insomnia.rest/5.0
 schema_version: "5.1"
-name: FastApi
+name: WS Work Cars - FastApi
 meta:
   id: wrk_2104a1b1e59640559fd1f2000b75cf91
   created: 1779058530041
-  modified: 1779058530041
+  modified: 1779409685765
   description: ""
 collection:
   - name: Marcas
@@ -15,12 +15,12 @@ collection:
       sortKey: -1779330521170
       description: ""
     children:
-      - url: http://127.0.0.1:8000/marcas
+      - url: "{{ _.BASE_URL }}marcas"
         name: Add
         meta:
           id: req_378acaab3d824fb4ac5be814313796ee
           created: 1779330549765
-          modified: 1779331422007
+          modified: 1779410060926
           isPrivate: false
           description: ""
           sortKey: -1779330556890
@@ -46,15 +46,15 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/marcas
+      - url: "{{ _.BASE_URL }}marcas"
         name: List All
         meta:
           id: req_58a177974f5a43269d5cbd6741285cbf
           created: 1779330660841
-          modified: 1779330669843
+          modified: 1779410155446
           isPrivate: false
           description: ""
-          sortKey: -1778660060505.5
+          sortKey: -1778869590625.6562
         method: GET
         body:
           mimeType: application/json
@@ -74,12 +74,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/marcas/fdf5c214-18a3-43f2-911e-6cef3ccc9065
+      - url: "{{ _.BASE_URL }}marcas/fdf5c214-18a3-43f2-911e-6cef3ccc9065"
         name: Get by ID
         meta:
           id: req_ac4cf3ccc116482086b77bfc9ecb5805
           created: 1779330698665
-          modified: 1779335424084
+          modified: 1779410069978
           isPrivate: false
           description: ""
           sortKey: -1778995308697.75
@@ -97,12 +97,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/marcas/fdf5c214-18a3-43f2-911e-6cef3ccc9065
+      - url: "{{ _.BASE_URL }}marcas/fdf5c214-18a3-43f2-911e-6cef3ccc9065"
         name: Delete
         meta:
           id: req_76e9e256810e47ffb067f68d48d7c84a
           created: 1779330777228
-          modified: 1779336274041
+          modified: 1779410066409
           isPrivate: false
           description: ""
           sortKey: -1779162932793.875
@@ -120,12 +120,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/marcas/d6860040-cc81-47f2-b571-8ad4fabebdf5
+      - url: "{{ _.BASE_URL }}marcas/d6860040-cc81-47f2-b571-8ad4fabebdf5"
         name: Update
         meta:
           id: req_9a0a98b614654314a255df135260bcfb
           created: 1779331104484
-          modified: 1779335648828
+          modified: 1779410073284
           isPrivate: false
           description: ""
           sortKey: -1778743872553.5625
@@ -159,12 +159,12 @@ collection:
       sortKey: -1779330521120
       description: ""
     children:
-      - url: http://127.0.0.1:8000/modelos
+      - url: "{{ _.BASE_URL }}modelos"
         name: List All
         meta:
           id: req_128539e076b04083a2af8bc47012f762
           created: 1779330927152
-          modified: 1779330974119
+          modified: 1779410099927
           isPrivate: false
           description: ""
           sortKey: -1778660060505.5
@@ -187,12 +187,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/modelos/1fabbb7c-97fa-43a0-9cc7-0c931b0c604f
+      - url: "{{ _.BASE_URL }}modelos/1fabbb7c-97fa-43a0-9cc7-0c931b0c604f"
         name: Get by ID
         meta:
           id: req_3d2134be70e141f6b8bd4fc9ed35848c
           created: 1779330927152
-          modified: 1779335700744
+          modified: 1779410091979
           isPrivate: false
           description: ""
           sortKey: -1778995308697.75
@@ -210,12 +210,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/modelos
+      - url: "{{ _.BASE_URL }}modelos"
         name: Add
         meta:
           id: req_3d731fb023ac4851b95eb949ee58f495
           created: 1779330927152
-          modified: 1779335678951
+          modified: 1779410083865
           isPrivate: false
           description: ""
           sortKey: -1779330556890
@@ -243,12 +243,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/modelos/24171df7-8293-49e6-ae8c-195f3dbcaba9
+      - url: "{{ _.BASE_URL }}modelos/24171df7-8293-49e6-ae8c-195f3dbcaba9"
         name: Delete
         meta:
           id: req_9c9df15291754d8fbd01733f6c717aeb
           created: 1779330927152
-          modified: 1779336415534
+          modified: 1779410088502
           isPrivate: false
           description: ""
           sortKey: -1779162932793.875
@@ -266,12 +266,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/modelos/1fabbb7c-97fa-43a0-9cc7-0c931b0c604f
+      - url: "{{ _.BASE_URL }}modelos/1fabbb7c-97fa-43a0-9cc7-0c931b0c604f"
         name: Update
         meta:
           id: req_075397ce996942709766022d3f6e2a43
           created: 1779331369187
-          modified: 1779336265795
+          modified: 1779410105865
           isPrivate: false
           description: ""
           sortKey: -1778660060405.5
@@ -302,16 +302,16 @@ collection:
     meta:
       id: fld_97a85e2241bc44ac81386b6e5ab64c8e
       created: 1779330984482
-      modified: 1779330987676
+      modified: 1779410055109
       sortKey: -1779330521270
       description: ""
     children:
-      - url: http://127.0.0.1:8000/carros
+      - url: "{{ _.BASE_URL }}carros"
         name: List All
         meta:
           id: req_1bbeb8aef4514185b15944bb13ed2d97
           created: 1779330984482
-          modified: 1779391989447
+          modified: 1779409989204
           isPrivate: false
           description: ""
           sortKey: -1778660060505.5
@@ -332,6 +332,16 @@ collection:
           token: "{% response 'body', 'req_09f83aecd3eb41d1837f1250b96b5f95',
             'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'always', 60 %}"
           prefix: Bearer
+        scripts:
+          preRequest: >+
+            
+            insomnia.collectionVariables.set("BASE_URL",
+            "http://127.0.0.1:8000/");
+
+
+
+
+
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -340,12 +350,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/carros/55fa13bb-d56e-4dca-b1b1-9872d504ccb2
+      - url: "{{ _.BASE_URL }}carros/55fa13bb-d56e-4dca-b1b1-9872d504ccb2"
         name: Get by ID
         meta:
           id: req_b4c087783a8f4daa9d564be488891bc2
           created: 1779330984482
-          modified: 1779336351559
+          modified: 1779410032638
           isPrivate: false
           description: ""
           sortKey: -1778995308697.75
@@ -363,15 +373,15 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/carros/55fa13bb-d56e-4dca-b1b1-9872d504ccb2
+      - url: "{{ _.BASE_URL }}carros/55fa13bb-d56e-4dca-b1b1-9872d504ccb2"
         name: Delete
         meta:
           id: req_fbe716d0f39e47a4bd507899cbb6c8c2
           created: 1779330984482
-          modified: 1779336392861
+          modified: 1779410149539
           isPrivate: false
           description: ""
-          sortKey: -1778827684601.625
+          sortKey: -1779162932793.875
         method: DELETE
         headers:
           - name: User-Agent
@@ -386,12 +396,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/carros
+      - url: "{{ _.BASE_URL }}carros"
         name: Add
         meta:
           id: req_fc6eefc0739f445cba0e67457435a2cd
           created: 1779330984482
-          modified: 1779336327287
+          modified: 1779410021952
           isPrivate: false
           description: ""
           sortKey: -1779330556890
@@ -424,15 +434,15 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://127.0.0.1:8000/carros/55fa13bb-d56e-4dca-b1b1-9872d504ccb2
+      - url: "{{ _.BASE_URL }}carros/55fa13bb-d56e-4dca-b1b1-9872d504ccb2"
         name: Update
         meta:
           id: req_3c4d1c0e94ac405184772912b6543103
           created: 1779331793159
-          modified: 1779336367027
+          modified: 1779410146559
           isPrivate: false
           description: ""
-          sortKey: -1779246744841.9375
+          sortKey: -1778660060405.5
         method: PUT
         body:
           mimeType: application/json
@@ -465,12 +475,12 @@ collection:
       sortKey: -1779388985974
       description: ""
     children:
-      - url: http://127.0.0.1:8000/auth/login
+      - url: "{{ _.BASE_URL }}auth/login"
         name: Login
         meta:
           id: req_09f83aecd3eb41d1837f1250b96b5f95
           created: 1779388990325
-          modified: 1779391099334
+          modified: 1779410043917
           isPrivate: false
           description: ""
           sortKey: -1779388995929
@@ -505,11 +515,13 @@ cookieJar:
   meta:
     id: jar_4edb0eed1ae189281943d1c5e234a2be814138f9
     created: 1779058530048
-    modified: 1779058530048
+    modified: 1779410055106
 environments:
   name: Base Environment
   meta:
     id: env_4edb0eed1ae189281943d1c5e234a2be814138f9
     created: 1779058530045
-    modified: 1779058530045
+    modified: 1779410055108
     isPrivate: false
+  data:
+    BASE_URL: http://127.0.0.1:8000/

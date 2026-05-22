@@ -28,6 +28,11 @@ para evitar adicionar muitas dependências que não vão ser usadas nesse projet
 
 * WIP: Autenticação e Autorização: login ok mas quando colocado o Bearer Token nas requisições retorna Invalid or expired token.
 
+## Futuras versões
+Foi verificado que falta um tratamento no delete para evitar apagar entidades que fazem parte de algum relacionamento com outras entidades.
+
+## GitHub https://github.com/fabiosilvaacs/cars_fastapi
+
 ## Documentação
 Acesse a documentação interativa em: **http://localhost:8000/docs**
 
