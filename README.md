@@ -33,8 +33,10 @@ Foi verificado que falta um tratamento no delete para evitar apagar entidades qu
 
 ## GitHub https://github.com/fabiosilvaacs/cars_fastapi
 
+## Publicação https://cars-fastapi.onrender.com/
+
 ## Documentação
-Acesse a documentação interativa em: **http://localhost:8000/docs**
+Acesse a documentação interativa em: **http://localhost:8000/docs** ou **https://cars-fastapi.onrender.com/docs**
 
 ## Instalação
 ```bash
