@@ -1,11 +1,12 @@
 import uuid
 from typing import Annotated, List
 from fastapi import APIRouter, Depends, HTTPException
-from sqlmodel import Session, select
+from sqlmodel import Session, select, func
 
 from database import get_session
 from models.marcas import Marca
 from models.modelos import Modelo, ModeloCreate, ModeloRead, ModeloUpdate
+from models.carros import Carro
 
 router = APIRouter(prefix="/modelos")
 SessionDep = Annotated[Session, Depends(get_session)]
@@ -56,6 +57,16 @@ def update_modelo(
 @router.delete("/{modelo_id}", status_code=204)
 def delete_modelo(modelo_id: uuid.UUID, session: SessionDep):
     modelo = session.get(Modelo, modelo_id)
-    if modelo:
-        session.delete(modelo)
-        session.commit()
+    if not modelo:
+        raise HTTPException(status_code=404, detail="Modelo não encontrado")
+    
+    # Contar carros que estão vinculados a esse modelo
+    count_carros = session.exec(
+        select(func.count(Carro.id)).where(Carro.modelo_id == modelo_id)
+    ).first()
+    
+    if count_carros > 0:
+        raise HTTPException(status_code=409, detail="Modelo possui carros vinculados")
+    
+    session.delete(modelo)
+    session.commit()
