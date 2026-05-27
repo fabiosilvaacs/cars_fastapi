@@ -90,7 +90,7 @@ class TestDeleteMarca:
         resp = client.get(f"/marcas/{marca['id']}")
         assert resp.status_code == 404
 
-    def test_deleta_id_inexistente_retorna_204(self, client: TestClient):
-        """Delete idempotente: mesmo sem encontrar, retorna 204."""
+    def test_deleta_id_inexistente_retorna_404(self, client: TestClient):
+        """Delete idempotente: mesmo sem encontrar, retorna 404."""
         resp = client.delete(f"/marcas/{uuid.uuid4()}")
-        assert resp.status_code == 204
+        assert resp.status_code == 404

@@ -109,4 +109,4 @@ class TestDeleteModelo:
 
     def test_deleta_id_inexistente_retorna_204(self, client: TestClient):
         resp = client.delete(f"/modelos/{uuid.uuid4()}")
-        assert resp.status_code == 204
+        assert resp.status_code == 404
