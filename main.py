@@ -37,6 +37,16 @@ openapi_tags = [
     },
 ]
 
+servers = [
+    {
+        "url": "http://localhost:8000",
+        "description": "Ambiente de desenvolvimento"},
+    {
+        "url": "https://cars-fastapi.onrender.com",
+        "description": "Ambiente de produção",
+    },
+]
+
 
 class NoneExcludedResponse(JSONResponse):
     def render(self, content) -> bytes:
@@ -53,6 +63,7 @@ app = FastAPI(
     openapi_tags=openapi_tags,
     redoc_url=None,
     default_response_class=NoneExcludedResponse,
+    servers=servers,
 )
 
 app.add_middleware(

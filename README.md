@@ -1,6 +1,7 @@
 # API de Carros — FastAPI + SQLModel
 
 CRUD completo para **Marcas**, **Modelos** e **Carros** usando FastAPI e SQLModel com banco SQLite.
+Teste para oportunidade como desenvolvedor na [WS Work](https://www.wswork.com.br/). 
 
 ## Decisões Técnicas
 
