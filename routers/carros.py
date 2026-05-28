@@ -1,12 +1,15 @@
 import uuid
 from typing import Annotated, List
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlmodel import Session, select
 
 from database import get_session
 from models.carros import Carro, CarroCreate, CarroRead, CarroUpdate
 from models.modelos import Modelo
+from exceptions import NotFoundError
 
+CARRO_NOT_FOUND = NotFoundError("Carro não encontrado")
+MODELO_NOT_FOUND = NotFoundError("Modelo não encontrado")
 
 router = APIRouter(prefix="/carros")
 SessionDep = Annotated[Session, Depends(get_session)]
@@ -21,14 +24,14 @@ def list_carros(session: SessionDep):
 def get_carro(carro_id: uuid.UUID, session: SessionDep):
     carro = session.get(Carro, carro_id)
     if not carro:
-        raise HTTPException(status_code=404, detail="Carro não encontrado")
+        raise CARRO_NOT_FOUND
     return carro
 
 
 @router.post("/", response_model=CarroRead, status_code=201)
 def create_carro(carro_in: CarroCreate, session: SessionDep):
     if not session.get(Modelo, carro_in.modelo_id):
-        raise HTTPException(status_code=404, detail="Modelo não encontrado")
+        raise MODELO_NOT_FOUND
     carro = Carro.model_validate(carro_in)
     session.add(carro)
     session.commit()
@@ -42,9 +45,9 @@ def update_carro(
 ):
     carro = session.get(Carro, carro_id)
     if not carro:
-        raise HTTPException(status_code=404, detail="Carro não encontrado")
+        raise CARRO_NOT_FOUND
     if carro_in.modelo_id and not session.get(Modelo, carro_in.modelo_id):
-        raise HTTPException(status_code=404, detail="Modelo não encontrado")
+        raise MODELO_NOT_FOUND
     data = carro_in.model_dump(exclude_unset=True)
     for key, value in data.items():
         setattr(carro, key, value)

@@ -3,9 +3,10 @@ from typing import Annotated
 from uuid import uuid4
 
 import jwt
-from fastapi import Depends, HTTPException, Request, status
+from fastapi import Depends, Request, status
 from fastapi.security import HTTPBearer
 from pydantic import BaseModel
+from exceptions import ForbiddenError, UnauthorizedError
 
 SECRET = "fdae@15"
 ALGORITHM = "HS256"
@@ -59,14 +60,14 @@ class JWTBearer(HTTPBearer):
 
         if credentials:
             if not scheme == "Bearer":
-                raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authentication scheme.")
+                raise UnauthorizedError("Invalid authentication scheme.")
 
             payload = await decode_jwt(credentials)
             if not payload:
-                raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or expired token.")
+                raise UnauthorizedError("Invalid or expired token.")
             return payload
         else:
-            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authorization code.")
+            raise UnauthorizedError("Invalid authorization code.")
 
 
 async def get_current_user(token: Annotated[JWTToken, Depends(JWTBearer())]) -> dict[str, int]:
@@ -75,5 +76,5 @@ async def get_current_user(token: Annotated[JWTToken, Depends(JWTBearer())]) -> 
 
 def login_required(current_user: Annotated[dict[str, int], Depends(get_current_user)]):
     if not current_user:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Access denied")
+        raise ForbiddenError("Access denied")
     return current_user

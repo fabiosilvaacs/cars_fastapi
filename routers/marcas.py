@@ -1,14 +1,17 @@
 import uuid
 from typing import Annotated, List
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlmodel import Session, select, func
 
 from database import get_session
 from models.marcas import Marca, MarcaCreate, MarcaRead, MarcaUpdate
 from models.modelos import Modelo
+from exceptions import ConflictError, NotFoundError
 
 router = APIRouter(prefix="/marcas")
 SessionDep = Annotated[Session, Depends(get_session)]
+
+MARCA_NOT_FOUND = NotFoundError("Marca não encontrada")
 
 
 @router.get("/", response_model=List[MarcaRead], summary="Listar todas")
@@ -20,7 +23,7 @@ def list_marcas(session: SessionDep):
 def get_marca(marca_id: uuid.UUID, session: SessionDep):
     marca = session.get(Marca, marca_id)
     if not marca:
-        raise HTTPException(status_code=404, detail="Marca não encontrada")
+        raise MARCA_NOT_FOUND
     return marca
 
 
@@ -39,7 +42,7 @@ def update_marca(
 ):
     marca = session.get(Marca, marca_id)
     if not marca:
-        raise HTTPException(status_code=404, detail="Marca não encontrada")
+        raise MARCA_NOT_FOUND
     data = marca_in.model_dump(exclude_unset=True)
     for key, value in data.items():
         setattr(marca, key, value)
@@ -53,15 +56,15 @@ def update_marca(
 def delete_marca(marca_id: uuid.UUID, session: SessionDep):
     marca = session.get(Marca, marca_id)
     if not marca:
-        raise HTTPException(status_code=404, detail="Marca não encontrada")
-    
+        raise MARCA_NOT_FOUND
+
     # Contar carros que estão vinculados a modelos dessa marca
     count_modelos = session.exec(
         select(func.count(Modelo.id)).where(Modelo.marca_id == marca_id)
     ).first()
-    
+
     if count_modelos > 0:
-        raise HTTPException(status_code=409, detail="Marca possui carros vinculados")
-    
+        raise ConflictError("Marca possui carros vinculados")
+
     session.delete(marca)
     session.commit()

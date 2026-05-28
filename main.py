@@ -1,11 +1,12 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import create_db_tables
 from routers import auth, carros, marcas, modelos
+from exceptions import BusinessError
 
 
 @asynccontextmanager
@@ -71,3 +72,11 @@ app.include_router(modelos.router, tags=["Modelos"])    # , dependencies=[Depend
 @app.get("/", tags=["Main"])
 def root():
     return {"message": "API de Carros funcionando!"}
+
+
+@app.exception_handler(BusinessError)
+async def not_found_post_exception_handler(request: Request, error: BusinessError):
+    return JSONResponse(
+        status_code=error.status_code,
+        content={"detail": error.message},
+    )
